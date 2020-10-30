@@ -1,0 +1,199 @@
+<div class="alert alert-success d-flex justify-content-between" role="alert">
+  <div class="p">Products</div>
+  <button type="button" class="btn-orange" (click)="addProductModal(template)">Add</button>
+</div>
+
+<div class="border">
+
+  <div class="form-group">
+    <input type="text" class="form-control padding" placeholder="filter products..." [(ngModel)]="searchProducts"
+      name="searchProducts">
+  </div>
+
+  <hr class="line">
+
+  <table class="table table-bordered padding">
+
+    <thead class="table-success">
+      <tr>
+        <th scope="col" style="width: 5%;" [class.active]="order === 'category.name'"
+          (click)="setOrder('category.name')">Category
+          <span [hidden]="!reverse">▼</span><span [hidden]="reverse">▲</span>
+        </th>
+        <th scope="col" style="width: 25%;" [class.active]="order === 'name'" (click)="setOrder('name')">Name
+          <span [hidden]="!reverse">▼</span><span [hidden]="reverse">▲</span>
+        </th>
+        <th scope="col" style="width: 10%;">Price</th>
+        <th scope="col" style="width: 10%;">Weight</th>
+        <th scope="col" style="width: 10%;" [class.active]="order === 'mark'" (click)="setOrder('mark')">Mark
+          <span [hidden]="!reverse">▼</span><span [hidden]="reverse">▲</span>
+        </th>
+        <th scope="col" style="width: 10%;">Date</th>
+        <th scope="col" style="width: 10%;">Country</th>
+        <th scope="col" style="width: 10%;">Image</th>
+        <th scope="col" style="width: 5%;">Edit</th>
+        <th scope="col" style="width: 5%;">Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr
+        *ngFor="let product of products| searchProd:searchProducts | orderBy: order:!reverse:'case-insensitive'; index as i">
+        <td>{{ product.category.name }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}<span> грн</span></td>
+        <td>{{ product.weight }}</td>
+        <td>{{ product.mark }}</td>
+        <td>{{ product.date }}</td>
+        <td>{{ product.country }}</td>
+        <td class="img-wrapp">
+          <img [src]="product.image" class="imgTable" alt="" />
+        </td>
+        <td>
+          <button type="button" class="btn btn-warning btn-block"
+            (click)="editProductModal(editTemplate, product)">Edit</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger btn-block"
+            (click)="deleteProductModal(deleteTemplatee, product)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Products</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <select class="form-group form-control" type="number" [(ngModel)]="product.category">
+      <option *ngFor="let category of categories" [ngValue]="category">{{category.name}}</option>
+    </select>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="product.name" name="product.name" placeholder="name">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="product.price" name="product.price" placeholder="price">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="product.weight" name="product.weight" placeholder="weight">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="product.mark" name="product.mark" placeholder="mark">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="product.date" name="product.date" placeholder="date">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="product.country" name="product.country"
+        placeholder="country">
+    </div>
+    <div class="custom-file" *ngIf="!imageStatus">
+      <input type="file" [(ngModel)]="img" class="custom-file-input" id="image" name="img"
+        (change)="uploadFile($event, product)" />
+      <label class="custom-file-label" for="image">Choose file...</label>
+    </div>
+    <div class="progress mb-3 mt-3" *ngIf="!imageStatus">
+      <div [style.width]="(uploadProgress | async) + '%'" class="progress-bar progress-bar-striped bg-warning"
+        role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div class="productImage mb-3 mt-3" *ngIf="imageStatus">
+      <img [src]="product.image" class="img" />
+      <span (click)="deleteImage(product)">
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+          <path fill-rule="evenodd"
+            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+        </svg>
+      </span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    <button type="button" class="btn btn-dark" (click)="addProduct()">Add</button>
+  </div>
+</ng-template>
+
+<ng-template #editTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Products</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <select class="form-group form-control" type="number" [(ngModel)]="productForEdit.category.name">
+      <option *ngFor="let category of categories" [ngValue]="category.name">{{category.name}}</option>
+    </select>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="productForEdit.name" name="productForEdit.name"
+        placeholder="name">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="productForEdit.price" name="productForEdit.price"
+        placeholder="price">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="productForEdit.weight" name="productForEdit.weight"
+        placeholder="weight">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="productForEdit.mark" name="productForEdit.mark"
+        placeholder="mark">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="productForEdit.date" name="productForEdit.date"
+        placeholder="date">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="productForEdit.country" name="productForEdit.country"
+        placeholder="country">
+    </div>
+    <div class="custom-file" *ngIf="!imageStatus">
+      <input type="file" [(ngModel)]="img" class="custom-file-input" id="image" name="img"
+        (change)="uploadFile($event, productForEdit)" />
+      <label class="custom-file-label" for="image">Choose file...</label>
+    </div>
+    <div class="progress mb-3 mt-3" *ngIf="!imageStatus">
+      <div [style.width]="(uploadProgress | async) + '%'" class="progress-bar progress-bar-striped bg-warning"
+        role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div class="productImage mb-3 mt-3">
+      <img [src]="productForEdit.image" class="img" />
+      <span (click)="deleteImage(productForEdit)">
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+          <path fill-rule="evenodd"
+            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+        </svg>
+      </span>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    <button type="button" class="btn btn-dark" (click)="editProduct()">Edit</button>
+  </div>
+</ng-template>
+
+<ng-template #deleteTemplatee>
+  <div class="vertical-align-center">
+    <div class="modal-body text-center d-flex justify-content-around">
+      <button type="button" class="btn btn-dark" style="width: 45%;" (click)="modalRef.hide()">
+        Dismiss
+      </button>
+      <button type="button" class="btn btn-danger" style="width: 45%;" (click)="deleteProduct()">
+        Delete
+      </button>
+    </div>
+  </div>
+</ng-template>

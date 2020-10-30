@@ -1,0 +1,28 @@
+<div class="container-fluid containe">
+
+  <div class="program-wrapp" *ngFor="let healthProgram of healthPrograms; index as i">
+    <div class="flex">
+      <div class="d-flex">
+        <div class="image-box">
+          <a [routerLink]="[]">
+            <img [src]="healthProgram.image" class="img">
+          </a>
+        </div>
+        <div class="text-box">
+          <button class="butt">Програми Здоров'я</button>
+          <div class="text-title">{{healthProgram.title}}</div>
+          <div class="text">{{healthProgram.description}}
+          </div>
+        </div>
+      </div>
+      <div class="ProgramBtn">
+        <a class="a-text" [routerLink]="[ '/program-details/', healthProgram.id ]">
+          <button class="btnProgMain">
+            <span class="btn-text">Програма здоров'я {{healthProgram.title}}</span>
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>

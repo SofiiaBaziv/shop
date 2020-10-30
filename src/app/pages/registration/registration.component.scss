@@ -1,0 +1,193 @@
+.all {
+  min-height: 480px;
+}
+
+.block-form {
+  width: 1100px;
+  min-height: inherit;
+  margin: 0 auto;
+  display: flex;
+  margin-top: 50px;
+}
+
+.right {
+  padding-top: 50px;
+  width: 50%;
+  padding-left: 30px;
+}
+
+.left {
+  padding-top: 50px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+}
+
+.vl {
+  border-left: 1px solid rgb(199, 199, 199);
+  min-height: inherit;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.col-sm-2 {
+  font-size: 15px;
+}
+
+.inp {
+  outline: none;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding-left: 15px;
+  ;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+
+}
+
+.btnLogin {
+  width: 428px;
+  border: none;
+  outline: none;
+  background-color: #83b735;
+  padding: 7px;
+  border-radius: 35px;
+  color: white;
+  margin-top: 15px;
+}
+
+.btnLogin:hover {
+  background-color: #669127;
+}
+
+.title-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.text-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 110px;
+  margin-right: 60px;
+  font-size: 15px;
+}
+
+.btnLoginSmall {
+  width: 228px;
+  border: none;
+  outline: none;
+  background-color: #83b735;
+  padding: 7px;
+  border-radius: 35px;
+  color: white;
+  margin-top: 25px;
+}
+.btnLoginSmall:hover {
+    background-color: #669127;
+  }
+  
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 1200px) {
+  .block-form {
+    width: 900px;
+  }
+
+  .btnLogin {
+    width: 345px;
+    padding: 5px;
+  }
+
+  .btnLoginSmall {
+    padding: 5px;
+  }
+
+  .text-left {
+    margin-left: 60px;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .block-form {
+    width: 700px;
+  }
+
+  .btnLogin {
+    width: 262px;
+    padding: 5px;
+  }
+
+  .text-left {
+    margin-left: 55px;
+    width: 320px;
+  }
+
+  .btnLoginSmall {
+    padding: 5px;
+    margin-left: 40px;
+  }
+
+  .title-left {
+    margin-left: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+
+  .block-form {
+    width: 400px;
+  }
+
+  .btnLoginSmall {
+    padding: 5px;
+    margin-left: 40px;
+    font-size: 13px;
+  }
+
+  .left {
+    padding-top: 50px;
+    width: 35%;
+    display: flex;
+    margin-left: 10px;
+    flex-direction: column;
+  }
+
+  .text-left {
+    margin-left: 25px;
+    width: 150px;
+    font-size: 12px;
+  }
+
+  .t {
+    width: 150px;
+  }
+
+  .btnLogin {
+    width: 121px;
+    padding: 5px;
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,65 @@
+<div class="container-fluid all">
+  <div class="block-form">
+    <div class="right">
+      <div class="title">ВХІД</div>
+      <form>
+        <div class="form-group row">
+          <p for="inputEmail" class="col-sm-2 col-form-label">Email</p>
+          <div class="col-sm-10 t">
+            <input type="text" class="inp" [(ngModel)]="loginEmail" name="loginEmail">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+          <div class="col-sm-10 t">
+            <input type="password" class="inp" [(ngModel)]="loginPassword" name="loginPassword">
+          </div>
+        </div>
+        <button type="button" class="btnLogin" (click)="login()">УВІЙТИ</button>
+      </form>
+    </div>
+
+    <div class="vl"></div>
+    <div class="left">
+      <div class="title-left">РЕЄСТРАЦІЯ</div>
+      <div class="text-left">Згідно з нашими даними, реєстрація на нашому сайті займає в середньому всього 38 секунд. Це
+        проста дія
+        дозволить вам заощадити до 76% часу при здійсненні майбутніх покупок. Крім цього, ви отримаєте можливість
+        переглядати свою історію замовлень.
+      </div>
+      <div class="flex"><button type="button" class="btnLoginSmall" (click)="openModal(template)">РЕЄСТРАЦІЯ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">РЕЄСТРАЦІЯ</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="firstName" name="firstName" placeholder="First Name">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="lastName" name="lastName" placeholder="Last Name">
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-control" [(ngModel)]="email" name="email" placeholder="Email" required >
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Password"
+        minlength="6">
+    </div>
+    <span *ngIf="showError" style="color: red;">{{errorMsg}}</span>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    <button type="button" class="btn btn-success" (click)="registerUser()">РЕЄСТРАЦІЯ</button>
+  </div>
+</ng-template>

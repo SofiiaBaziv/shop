@@ -1,0 +1,148 @@
+.wrapp {
+  width: 100%;
+  margin-top: 50px;
+  min-height: 100px;
+  display: flex;
+}
+
+.first-section {
+  width: 48%;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.second-section {
+  width: 48%;
+  height: inherit;
+  display: flex;
+  margin-left: -41px;
+
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+
+.schedule {
+  font-weight: 700;
+  border: 2px solid green;
+  color: green;
+  width: 90%;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+table {
+  width: 95%;
+  min-height: 250px;
+  margin-bottom: 35px;
+  font-size: 14px;
+  line-height: 1.4;
+
+}
+
+.table-wrapp {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table td {
+  padding: 15px 12px;
+  border: none;
+  font-weight: inherit;
+  text-align: left;
+  border-bottom: 1px solid #E6E6E6;
+}
+
+tr,
+td {
+  height: 24px;
+}
+
+.iconSchedule {
+  margin-right: 10px;
+}
+
+.scheduleNextText {
+  margin-top: -10px;
+  font-weight: 600;
+  color: #777;
+  width: 90%;
+  line-height: 1.6;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.deliveryText {
+  margin-top: -10px;
+  font-weight: 600;
+  color: #777;
+  width: 90%;
+  line-height: 1.6;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.textWr {
+  display: flex;
+  flex-direction: column;
+}
+
+.fWeight {
+  font-weight: 700;
+}
+
+@media screen and (max-width: 1200px) {
+  .second-section {
+    width: 50%;
+  }
+
+  .first-section {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .second-section {
+    width: 47%;
+    margin-left: 10px;
+  }
+
+  .first-section {
+    width: 44%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapp {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .second-section {
+    width: 90%;
+    margin-left: 20px;
+  }
+
+  .first-section {
+    width: 90%;
+    margin-left: 20px;
+    margin-bottom: 30px;
+  }
+
+}

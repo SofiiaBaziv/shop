@@ -1,0 +1,33 @@
+.all{
+    width: 100%;
+    min-height: 100px;
+}
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text-upper{
+    text-transform: uppercase;
+    color: #83b735;
+}
+.title-text{
+    color: #F5D534;
+    font-size: 50px;
+    line-height: 50px;
+}
+.marg-l{
+    margin-left: 100px;
+    margin-right: 100px;
+}
+ul{
+    list-style: none;
+    padding-left: 17px;
+}
+.f-Weight{
+    font-weight: 500;
+}
+li{
+    margin-bottom: 6px;
+    font-size: 15px;
+}

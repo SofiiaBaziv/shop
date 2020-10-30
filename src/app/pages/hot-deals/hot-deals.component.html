@@ -1,0 +1,40 @@
+<div class="AllContent">
+  <div class="sideBar">
+    <div class="form-group">
+      <input type="text" class="form-control padding" placeholder="filter products..." [(ngModel)]="searchProducts"
+      name="searchProducts">
+    </div>
+    <a [routerLink]="[ '/hot-deals']">
+      <div class="pl" (click)="setCategory(null)">УСІ КАТЕГОРІЇ</div>
+    </a>
+    <hr>
+    <ul class="menu">
+      <li class="d-flex" *ngFor="let category of categories">
+        <a class="MenuA" [class.active]="category.name === searchCategory" (click)="setCategory(category.name)">{{category.name}}</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="box-items-wrapp">
+    <div class="scale box-items" *ngFor="let product of discountProducts | sortMenu: searchCategory | searchCat:searchProducts">
+      <div class="photo-product">
+        <a [routerLink]="[ '/product-details', product.id ]">
+          <img [src]="product.image" class="photo">
+        </a>
+      </div>
+      <div class="name">{{product.name}}</div>
+      <div class="allPrice">
+        <div *ngIf="!product.discount" class="price">{{product.price}}<span> грн</span> /&nbsp; </div>
+        <div *ngIf="product.discount"class="price"><s style="color:red">{{product.price}}</s> {{product.price - product.discount.price}}<span> грн</span> /&nbsp; </div>
+        <div class="weight">{{product.weight}}</div>
+      </div>
+      <div class="btnAdd">
+        <button class="btnadd" (click)="addToCart(product)">
+          <span class="textBtnAdd">додати у кошик</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>

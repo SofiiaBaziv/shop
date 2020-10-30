@@ -1,0 +1,158 @@
+<div class="alert alert-success d-flex justify-content-between" role="alert">
+  <div class="p">Health-Programs</div>
+  <button type="button" class="btn-orange" (click)="openModal(template)">Add</button>
+</div>
+
+<div class="border">
+  <div class="form-group">
+    <input type="text" class="form-control padding" placeholder="filter health-programs...">
+  </div>
+
+  <hr class="line">
+
+  <table class="table table-bordered padding">
+
+    <thead class="table-success">
+      <tr>
+        <th scope="col" style="width: 10%;">Title</th>
+        <th scope="col" style="width: 20%;">Description</th>
+        <th scope="col" style="width: 40%;">Text</th>
+        <th scope="col" style="width: 10%;">Image</th>
+        <th scope="col" style="width: 10%;">Edit</th>
+        <th scope="col" style="width: 10%;">Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let healthProgram of healthPrograms; index as i">
+        <td  class="text-title">{{ healthProgram.title }}</td>
+        <td class="text-description">{{ healthProgram.description }}</td>
+        <td class="text-text">{{ healthProgram.text }}</td>
+        <td class="img-wrapp">
+          <img [src]="healthProgram.image" class="imgTable" alt="" />
+        </td>
+        <td>
+          <button type="button" class="btn btn-warning btn-block"
+            (click)="editProgramModal(editTemplate, healthProgram)">Edit</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger btn-block"
+          (click)="deleteProgramModal(deleteTemplatee, healthProgram)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Health-Programs</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="title" [(ngModel)]="healthProgram.title"
+        name="healthProgram.title">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="description" [(ngModel)]="healthProgram.description"
+        name="healthProgram.description">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="text" [(ngModel)]="healthProgram.text"
+        name="healthProgram.text">
+    </div>
+  <div class="custom-file" *ngIf="!imageStatus">
+    <input type="file" [(ngModel)]="img" class="custom-file-input" id="image" name="img"
+      (change)="uploadFile($event, healthProgram)" />
+    <label class="custom-file-label" for="image">Choose file...</label>
+  </div>
+  <div class="progress mb-3 mt-3" *ngIf="!imageStatus">
+    <div [style.width]="(uploadProgress | async) + '%'" class="progress-bar progress-bar-striped bg-warning"
+      role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <div class="productImage mb-3 mt-3" *ngIf="imageStatus">
+    <img [src]="healthProgram.image" class="img" />
+    <span (click)="deleteImage(healthProgram)">
+      <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+        <path fill-rule="evenodd"
+          d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+      </svg>
+    </span>
+  </div>
+</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    <button type="button" class="btn btn-dark" (click)="addProgram()">Add</button>
+  </div>
+</ng-template>
+
+<ng-template #editTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Health-Programs</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="programForEdit.title" name="programForEdit.title"
+        placeholder="title">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="programForEdit.description" name="programForEdit.description"
+        placeholder="description">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="programForEdit.text" name="programForEdit.text"
+        placeholder="text">
+    </div>
+
+    <div class="custom-file" *ngIf="!imageStatus">
+      <input type="file" [(ngModel)]="img" class="custom-file-input" id="image" name="img"
+        (change)="uploadFile($event, programForEdit)" />
+      <label class="custom-file-label" for="image">Choose file...</label>
+    </div>
+    <div class="progress mb-3 mt-3" *ngIf="!imageStatus">
+      <div [style.width]="(uploadProgress | async) + '%'" class="progress-bar progress-bar-striped bg-warning"
+        role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div class="productImage mb-3 mt-3">
+      <img [src]="programForEdit.image" class="img" />
+      <span (click)="deleteImage(programForEdit)">
+        <svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+          <path fill-rule="evenodd"
+            d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+        </svg>
+      </span>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    <button type="button" class="btn btn-dark" (click)="editProgram()">Edit</button>
+  </div>
+</ng-template>
+
+<ng-template #deleteTemplatee>
+    <div class="vertical-align-center">
+      <div class="modal-body text-center d-flex justify-content-around">
+        <button type="button" class="btn btn-dark" (click)="confirm()" style="width: 45%;" (click)="modalRef.hide()">
+          Dismiss
+        </button>
+        <button type="button" class="btn btn-danger" (click)="decline()" style="width: 45%;" (click)="deleteProgram()">
+          Delete
+        </button>
+      </div>
+    </div>
+  </ng-template>

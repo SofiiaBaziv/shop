@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="row marg">
+    <div class="col-2 ">
+      <div class="nav flex-column nav-pills">
+        <a class="button button1  buttonFirst nav-link" [routerLink]="[ 'admin-categories' ]"
+          routerLinkActive="bgActive">Categories</a>
+        <a class="button button1 nav-link" [routerLink]="[ 'admin-products' ]" routerLinkActive="bgActive">Products</a>
+        <a class="button button1 nav-link" [routerLink]="[ 'admin-discounts' ]"
+          routerLinkActive="bgActive">Discounts</a>
+        <a class="button button1 nav-link" [routerLink]="[ 'admin-orders' ]" routerLinkActive="bgActive">Orders</a>
+        <a class="button button1 nav-link" [routerLink]="[ 'admin-users' ]" routerLinkActive="bgActive">Users</a>
+        <a class="button button1 nav-link" [routerLink]="[ 'admin-healthPrograms' ]" routerLinkActive="bgActive">Health-Programs</a>
+      </div>
+    </div>
+    <div class="col-10">
+      <div class="tab-content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

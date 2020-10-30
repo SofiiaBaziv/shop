@@ -1,0 +1,103 @@
+.wrapp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.box-wrapp {
+  width: 95%;
+  min-height: 310px;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+}
+
+.contact-box {
+  width: 440px;
+  height: 240px;
+  background-color: #fff;
+  border: 1px solid rgba(173, 173, 173, 0.568);
+  border-radius: 5px;
+
+  margin: 0px 20px 20px 20px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.contact-box-title {
+  font-weight: 700;
+  color: rgb(129, 129, 129);
+}
+
+.contact-box-wrapp {
+  margin: 20px 0px 0px 20px;
+}
+
+.contact-box-number {
+  margin-top: -10px;
+  color: rgb(129, 129, 129);
+  font-weight: 400;
+}
+
+.contact-box-description {
+  margin-top: -15px;
+  color: rgb(129, 129, 129);
+  font-weight: 400;
+}
+.contact-box-email {
+   
+    color: rgb(129, 129, 129);
+    font-weight: 400;
+  }
+  .fWeight{
+    font-weight: 700;
+  }
+
+.icon {
+  display: flex;
+}
+
+.icon-wrapp-facebook {
+  width: 45px;
+  height: 45px;
+  background-color: rgb(6, 17, 158);
+  border-radius: 50%;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-wrapp-email {
+    width: 45px;
+    height: 45px;
+    background-color: orange;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon-wrapp-instagram {
+    width: 45px;
+    height: 45px;
+    background-color: brown;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.btnCall{
+    background-color: #83b735;
+    border-radius: 0px;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 15px;
+    padding:10px;
+    border: none;
+    outline: none;
+}

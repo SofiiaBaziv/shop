@@ -1,0 +1,35 @@
+<div class="wrap">
+  <div class="scale box">
+    <img [src]="product.image" class="photo">
+  </div>
+  <div class="prodInfo">
+    <div class="nav">
+      <a [routerLink]="[ '/home' ]">Головна / &nbsp;</a>
+      <a [routerLink]="[ '/products']"> {{product.category.name}} / &nbsp;</a>
+      <a><b>{{product.name}}</b></a>
+    </div>
+    <div class="prodName">{{product.name}}</div>
+    <div class="wrapProdTitle">Вага / Об'єм:<span class="prodTitle">{{product.weight}}</span></div>
+    <div class="wrapProdTitle">Термін зберігання:<span class="prodTitle">{{product.date}}</span></div>
+    <div class="wrapProdTitle">Країна виробництва:<span class="prodTitle">{{product.country}}</span></div>
+    <div class="wrapProdTitle last">Марка виробника:<span class="prodTitle">{{product.mark}}</span></div>
+    <div class="btnWrapp">
+      <div *ngIf="!product.discount" class="price">{{product.price}}<span> грн</span> /&nbsp; </div>
+      <div *ngIf="product.discount" class="price"><s style="color:red">{{product.price}}</s>
+        {{product.price - product.discount.price}}<span> грн</span> /&nbsp; </div>
+      <div class="weight">{{product.weight}}</div>
+    </div>
+    <div class="btnWrapp">
+      <div class="productCountWrapper">
+        <span class="productCount lessProduct" (click)="changeCount(-1)"></span>
+        <input class="product-qty-single i" type="text" maxlength="3" [(ngModel)]="productCount" readonly>
+        <span class="productCount moreProduct" (click)="changeCount(1)"></span>
+      </div>
+      <button class="btnAddBascet" (click)="addToCart()">додати у кошик</button>
+    </div>
+    <div class="btnWrapp">
+      <img class="iconImg" src="https://img.icons8.com/ios/100/000000/heart-plus.png" />
+      <div class="like" (click)="addWishlist()">У список бажань</div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="all">
+
+  <div class="sideBar">
+    <h3 class="MyAccount-title">Профіль: <span style="color: #83b735;">{{loggedUser.firstName}}
+        {{loggedUser.lastName}}</span></h3>
+    <nav class="navigation">
+      <ul>
+        <li><a class="nav-link" [routerLink]="[ 'profile-main' ]" routerLinkActive="bgActive">Головна</a></li>
+        <li><a [routerLink]="[ 'profile-likelist' ]" routerLinkActive="bgActive">Список бажань</a></li>
+        <li><a href="#" (click)="logout()">Вийти</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="tab-content">
+    <router-outlet></router-outlet>
+  </div>
+
+</div>

@@ -1,0 +1,50 @@
+
+.container {
+  min-height: 500px;
+  display: flex;
+  margin-top: 50px;
+}
+
+.first {
+  width: 30%;
+
+  height: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.second {
+  width: 70%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+.indent {
+  margin-left: 30px;
+}
+
+
+.btnRegistration {
+  background-color: #17af95 !important;
+  width: 210px;
+  padding: 10px;
+  border: none;
+  outline: none;
+  color: white;
+  text-transform:uppercase;
+  font-weight: 600;
+}
+.btn-wrapp{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnRegistration:hover{
+  background-color: #83b735!important;
+}

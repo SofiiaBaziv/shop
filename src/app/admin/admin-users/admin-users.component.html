@@ -1,0 +1,83 @@
+<div class="alert alert-success d-flex justify-content-between" role="alert">
+  <div class="p">Users</div>
+</div>
+
+<div class="border">
+
+  <div class="form-group">
+    <input type="text" class="form-control padding" placeholder="filter users..." [(ngModel)]="searchUser"
+      name="searchUser">
+  </div>
+
+  <hr class="line">
+
+  <table class="table table-bordered padding">
+
+    <thead class="table-success">
+      <tr>
+        <th scope="col" style="width: 20%;" [class.active]="order === 'email'" (click)="setOrder('email')">Email
+          <span [hidden]="!reverse">▼</span><span [hidden]="reverse">▲</span>
+        </th>
+        <th scope="col" style="width: 25%;" [class.active]="order === 'firstName'" (click)="setOrder('firstName')">First Name
+          <span [hidden]="!reverse">▼</span><span [hidden]="reverse">▲</span>
+        </th>
+        <th scope="col" style="width: 25%;" [class.active]="order === 'lastName'" (click)="setOrder('lastName')">Last Name
+          <span [hidden]="!reverse">▼</span><span [hidden]="reverse">▲</span>
+        </th>
+        <th scope="col" style="width: 15%;">Edit</th>
+        <th scope="col" style="width: 15%;">Delete</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users | searchUser:searchUser | orderBy: order:!reverse:'case-insensitive'; index as i">
+        <td>{{user.email}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>
+          <button type="button" class="btn btn-warning btn-block"
+            (click)="editUserModal(editTemplate, user)">Edit</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger btn-block"
+            (click)="deleteUserModal(deleteTemplatee, user)">Delete</button>
+        </td>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #editTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Users</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="userForEdit.firstName" name="userForEdit.firstName"
+        placeholder="first name">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="userForEdit.lastName" name="userForEdit .lastName"
+        placeholder="last name">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    <button type="button" class="btn btn-dark" (click)="editUser()">Edit</button>
+  </div>
+</ng-template>
+
+<ng-template #deleteTemplatee>
+  <div class="vertical-align-center">
+    <div class="modal-body text-center d-flex justify-content-around">
+      <button type="button" class="btn btn-dark" (click)="confirm()" style="width: 45%;" (click)="modalRef.hide()">
+        Dismiss
+      </button>
+      <button type="button" class="btn btn-danger" (click)="decline()" style="width: 45%;" (click)="deleteUser()">
+        Delete
+      </button>
+    </div>
+  </div>
+</ng-template>

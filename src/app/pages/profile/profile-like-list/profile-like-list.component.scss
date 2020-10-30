@@ -1,0 +1,127 @@
+  .img-wrapp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .imgCart {
+    width: 70px;
+    height: 70px;
+  }
+
+  .mrg-t {
+    margin-top: 20px;
+  }
+
+  .btnAdd {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+  }
+
+  .btnadd {
+    width: 120px;
+    border: none;
+    outline: none;
+    text-transform: uppercase;
+    background-color: #83b735;
+    height: 35px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btnadd:hover {
+    background-color: #6e9436;
+  }
+
+  .textBtnAdd {
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .mrg-t2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 19px;
+  }
+
+  .mrg-t3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 9px;
+  }
+
+  .deleteItem {
+    border: none;
+    outline: none;
+    background-color: transparent;
+  }
+
+  @media screen and (max-width: 768px) {
+
+    .imgCart {
+      width: 50px;
+      height: 50px;
+      margin-top: 20px;
+    }
+
+    .nameTbl,
+    .markTbl,
+    .priceTbl {
+      font-size: 11px;
+    }
+
+    .mrg-t2,
+    .imgCart,
+    .mrg-t,
+    .mrg-t3 {
+      margin-top: 0px;
+    }
+
+    .btnadd {
+      width: 50px;
+      height: 30px;
+
+    }
+
+    .textBtnAdd {
+      font-size: 8px;
+    }
+
+    .ssIcon {
+      width: 10px;
+      height: 10px;
+    }
+
+    th,
+    td {
+      padding: 0.1px;
+    }
+
+    .sizeTh {
+      padding-left: 19px;
+      padding-right: 19px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+      font-size: 10px;
+    }
+
+    .delIcon {
+      width: 15px;
+      height: 15px;
+    }
+    td{
+      padding: 5px;
+    }
+  }

@@ -1,0 +1,227 @@
+.containe {
+  width: 1150px;
+  min-height: 500px;
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  align-items: center;
+
+}
+
+.program-wrapp {
+  width: 550px;
+  min-height: 400px;
+  background-color: #83b7357c;
+  margin-top: 30px;
+  display: flex;
+}
+
+.image-box {
+  width: 200px;
+  height: 200px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.img {
+  width: 200px;
+  height: 200px;
+}
+
+.text-box {
+  width: 350px;
+
+
+}
+
+.butt {
+  outline: none;
+  border: none;
+  background-color: #83b735;
+  color: white;
+  padding: 5px;
+  margin-left: 20px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+a{
+  text-decoration: none;
+}
+
+.text-title {
+  margin-left: 20px;
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  min-width: 100px;
+  height: 30px;
+
+}
+
+.text {
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 10px;
+  width: 300px;
+  min-height: 350px;
+
+}
+
+.ProgramBtn {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnProgMain {
+  width: 400px;
+  outline: none;
+  border: none;
+  border: 2px solid #83b735;
+  background-color: #fff;
+  color: black!important;
+  padding: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.btnProgMain:hover {
+  background-color: #83b735;
+  color: white;
+}
+
+.a-text{
+  color: black;
+  font-size: 15px;
+}
+.btnProgMain:hover .a-text {
+  color: white;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .containe {
+    width: 900px;
+  }
+
+  .program-wrapp {
+    width: 400px;
+  }
+
+  .image-box {
+    width: 150px;
+    height: 150px;
+  }
+
+  .img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .text-box {
+    width: 250px;
+    min-height: 540px;
+  }
+
+  .text-title {
+    font-size: 18px;
+  }
+
+  .text {
+    width: 212px;
+    font-size: 15px;
+  }
+
+  .btnProgMain {
+    width: 200px;
+  }
+
+}
+
+@media screen and (max-width: 970px) {
+  .containe {
+    width: 750px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .program-wrapp {
+    width: 600px;
+
+  }
+
+  .image-box {
+    width: 200px;
+    height: 200px;
+  }
+
+  .img {
+    width: 200px;
+    height: 200px;
+  }
+
+  .text-box {
+    width: 250px;
+    min-height: 520px;
+  }
+
+
+  .text {
+    width: 310px;
+    font-size: 16px;
+  }
+
+  .btnProgMain {
+    width: 350px;
+    margin-left: 122px;
+  }
+
+
+}
+
+@media screen and (max-width: 768px) {
+  .containe {
+    width: 480px;
+  }
+
+  .program-wrapp {
+    width: 400px;
+
+  }
+
+  .image-box {
+    width: 120px;
+    height: 120px;
+  }
+
+  .img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .text-box {
+    width: 250px;
+    min-height: 540px;
+  }
+
+  .text-title {
+    font-size: 18px;
+  }
+
+  .text {
+    width: 212px;
+    font-size: 15px;
+  }
+
+  .btnProgMain {
+    width: 300px;
+    margin-left: 0px;
+  }
+}

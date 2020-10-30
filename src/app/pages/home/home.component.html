@@ -1,0 +1,137 @@
+  <div class="all-wrapp" style="display: block; margin-left: auto; margin-right: auto">
+
+    <div class="slider">
+      <carousel *ngIf="images">
+        <slide>
+          <img [src]="images[0]" alt="first slide" style="display: block; width: 100%; height: 400px;">
+        </slide>
+        <slide>
+          <img [src]="images[1]" alt="second slide" style="display: block; width: 100%; height: 400px;">
+        </slide>
+        <slide>
+          <img [src]="images[2]" alt="third slide" style="display: block; width: 100%; height: 400px;">
+        </slide>
+      </carousel>
+    </div>
+
+    <div class="styleLife">
+      <div class="title">
+        <div class="styleLife-bigtitle">СТИЛЬ ЖИТТЯ</div>
+        <p class="styleLife-smalltitle">Набори товарів для вашого способу життя</p>
+      </div>
+      <div class="styleLife-collections">
+        <a [routerLink]="[ '/products', 'Без Глютена' ]">
+          <img class="styleLifeImg" src="assets/images/1000.png" alt="image">
+        </a>
+        <a [routerLink]="[ '/products', 'Без Цукру' ]">
+          <img class="styleLifeImg" src="assets/images/2000.png" alt="image">
+        </a>
+        <a [routerLink]="[ '/products', 'Без Лактози' ]">
+          <img class="styleLifeImg" src="assets/images/3000.png" alt="image">
+        </a>
+        <a [routerLink]="[ '/products', 'Для Вегетаріанців' ]">
+          <img class="styleLifeImg" src="assets/images/4000.png" alt="image">
+        </a>
+      </div>
+    </div>
+
+    <div class="recommended">
+      <div class="title">
+        <div class="styleLife-bigtitle">Рекомендовані товари</div>
+        <p class="styleLife-smalltitle">Вибирай найкраще</p>
+      </div>
+      <div class="box-items-wrapp">
+        <div class="box-items" *ngFor="let product of products">
+          <div class="photo-product">
+            <a [routerLink]="[ '/product-details/', product.id ]">
+              <img [src]="product.image" class="photo">
+            </a>
+          </div>
+          <div class="name">{{product.name}}</div>
+          <div class="allPrice">
+            <div *ngIf="!product.discount" class="price">{{product.price}}<span> грн</span> /&nbsp; </div>
+            <div *ngIf="product.discount"class="price"><s style="color:red">{{product.price}}</s> {{product.price - product.discount.price}}<span> грн</span> /&nbsp; </div>
+            <div class="weight">{{product.weight}}</div>
+          </div>
+          <div class="btnAdd">
+            <button class="btnadd" (click)="addToCart(product)">
+              <span class="textBtnAdd">додати у кошик</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hotDeals">
+      <div class="title">
+        <div class="styleLife-bigtitle">Приєднуйтесь</div>
+        <p class="styleLife-smalltitle">Зручно і вигідно</p>
+      </div>
+      <div class="content">
+        <div class="content-box">
+          <p class="Info-title">Доставка товарів</p>
+          <a [routerLink]="['/delivery']">
+            <img class="infoImg" src="assets/images/delivery.png" alt="image">
+          </a>
+        </div>
+        <div class="content-box">
+          <p class="Info-title">Адреси магазинів</p>
+          <a [routerLink]="['/address']">
+            <img class="infoImg" src="assets/images/address.png" alt="image">
+          </a>
+        </div>
+        <div class="content-box">
+          <p class="Info-title">Бонусна програма</p>
+          <a [routerLink]="['/bonus-program']">
+            <img class="infoImg" src="assets/images/bonus.png" alt="image">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #template>
+    <div class="vertical-align-center">
+
+      <div class="modal-header">
+        <div class="d-fl bc">
+          <h4 class="modal-title pull-left">Зворотній зв'язок</h4>
+          <div>Шановні відвідувачі сайту мережі «ЕКОЛАВКА»! Свої зауваження і пропозиції стосовно роботи наших
+            магазинів
+            відправляйте, будь ласка, за допомогою форми нижче або залишайте операторам нашої Гарячої лінії за номером
+            телефону: 0 800 50 20 50</div>
+        </div>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="wt-50 flt">
+          <select class="select">
+            <option value="-1">Оберіть тип зв'язку</option>
+            <option value="0">Адміністрація</option>
+            <option value="1">Загальні питання</option>
+            <option value="1">Співпраця</option>
+          </select>
+        </div>
+        <div class="wt-50 flt">
+          <input type="text" class="inp" placeholder="ПІБ">
+        </div>
+        <div class="wt-50 flt">
+          <input type="text" class="inp" placeholder="Еmail">
+        </div>
+        <div class="wt-50 flt">
+          <input type="text" class="inp" placeholder="Контактний телефон">
+        </div>
+        <div class="wt100">
+          <textarea class="textarea" placeholder="Коментар"></textarea>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+          <button class="btn btn-danger">Надіслати</button>
+      </div>
+
+    </div>
+  </ng-template>

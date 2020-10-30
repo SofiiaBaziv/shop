@@ -1,0 +1,132 @@
+<div class="alert alert-success d-flex justify-content-between" role="alert">
+  <div class="p">Orders</div>
+</div>
+
+<div class="border">
+
+  <div class="form-group">
+    <input type="text" class="form-control padding" placeholder="filter orders..." [(ngModel)]="searchOrder"
+      name="searchOrder">
+  </div>
+
+  <hr class="line">
+
+  <table class="table table-bordered padding">
+
+    <thead class="table-success">
+      <tr>
+        <th scope="col" style="width: 15%;" [class.active]="order === 'lastName'"
+          (click)="setOrder('lastName')">Прізвище
+          <span [hidden]="!reverse">▼</span><span [hidden]="reverse">▲</span>
+        </th>
+        <th scope="col" style="width: 15%;" [class.active]="order === 'firstName'"
+          (click)="setOrder('firstName')">Ім'я
+          <span [hidden]="!reverse">▼</span><span [hidden]="reverse">▲</span>
+        </th>
+        <th scope="col" style="width: 60%;" [class.active]="order === 'deliveryCity'"
+          (click)="setOrder('deliveryCity')">Місто
+          <span [hidden]="!reverse">▼</span><span [hidden]="reverse">▲</span>
+        </th>
+        <th scope="col" style="width: 15%;" [class.active]="order === 'deliveryAddress'"
+          (click)="setOrder('deliveryAddress')">Адрес
+          <span [hidden]="!reverse">▼</span><span [hidden]="reverse">▲</span>
+        </th>
+        <th scope="col" style="width: 15%;">Телефон</th>
+        <th scope="col" style="width: 10%;">Сума</th>
+        <th scope="col" style="width: 15%;">Переглянути</th>
+        <th scope="col" style="width: 15%;">Видалити</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let order of orders | searchOrd:searchOrder | orderBy: order:!reverse:'case-insensitive'; index as i">
+        <td>{{order.lastName}}</td>
+        <td>{{order.firstName}}</td>
+        <td>{{order.deliveryCity}}</td>
+        <td>{{order.deliveryAddress}}</td>
+        <td>{{order.deliveryPhone}}</td>
+        <td>{{getOrderPrice(order)}}</td>
+        <td>
+          <button type="button" class="btn btn-warning btn-block"
+            (click)="viewOrderModal(viewTemplate, order)">View</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger btn-block"
+            (click)="deleteOrdersModal(deleteTemplatee, order)">Delete</button>
+        </td>
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+
+
+<ng-template #deleteTemplatee>
+  <div class="vertical-align-center">
+    <div class="modal-body text-center d-flex justify-content-around">
+      <button type="button" class="btn btn-dark" (click)="confirm()" style="width: 45%;" (click)="modalRef.hide()">
+        Dismiss
+      </button>
+      <button type="button" class="btn btn-danger" (click)="decline()" style="width: 45%;" (click)="deleteOrder()">
+        Delete
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+
+
+
+<ng-template #viewTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Orders</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <thead class="table-success">
+      <tr>
+        <th scope="col" style="width: 25%;">Product Name</th>
+        <th scope="col" style="width: 25%;">Product Mark</th>
+        <th scope="col" style="width: 25%;">Product Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let productOrder of orderForView.products; index as i">
+        <td>{{productOrder.product.name}}</td>
+        <td>{{productOrder.product.mark}}</td>
+        <td>{{productOrder.count}}</td>
+    </tbody>
+    <hr>
+    <div class="form-group">
+      Сума: <span style="color: red;"> {{getOrderPrice(orderForView)}} </span> грн
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="orderForView.lastName" name="orderForView.lastName"
+        placeholder="">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="orderForView.firstName" name="orderForView.firstName"
+        placeholder="">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="orderForView.deliveryCity" name="orderForView.deliveryCity"
+        placeholder="">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="orderForView.deliveryAddress"
+        name="orderForView.deliveryAddress" placeholder="">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="orderForView.deliveryPhone" name="orderForView.deliveryPhone"
+        placeholder="">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+  </div>
+</ng-template>
